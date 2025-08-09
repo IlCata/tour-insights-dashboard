@@ -1,0 +1,19 @@
+# Virtual environment
+.venv/
+pyvenv.cfg
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Ignore all CSV files (sensitive data)
+*.csv
+
+# macOS system file
+.DS_Store
+
+# VS Code settings
+.vscode/
