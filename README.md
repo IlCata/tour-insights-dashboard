@@ -147,7 +147,7 @@ When run with correctly structured data, the notebook produces:
 
 1. **Create a virtual environment** (recommended):
     ```bash
-    python -m venv .venv
+    python3 -m venv .venv
     source .venv/bin/activate  # On Windows: .venv\Scripts\activate
     ```
 
