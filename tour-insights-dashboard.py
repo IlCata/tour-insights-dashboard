@@ -15,8 +15,6 @@ MONTHS = {
     "06": "Junio de 2025",
 }
 
-# Hook sync test
-
 # Bar colors used consistently in visualizations
 BAR_COLORS = {"03": "orange", "04": "purple", "05": "green", "06": "blue"}
 
@@ -74,9 +72,6 @@ def load_month_data(month: str):
 
     return data
 
-
-# -
-
 # --- Load data for all selected months ---
 months = [
     "03",
@@ -94,7 +89,6 @@ guides = {m: all_data[m]["guides"] for m in months}
 availability = {m: all_data[m]["availability"] for m in months}
 skills = {m: all_data[m]["skills"] for m in months}
 
-# +
 # Merge bookings with tour details for each month
 bookings_tours = {}
 
@@ -103,7 +97,6 @@ for m in MONTHS:
         tours[m], left_on="TourID", right_on="id", how="left"
     )
 
-# +
 # Merge bookings+tours data with guide information
 # Then rename overlapping 'id' columns to avoid confusion
 bookings_merged = {}
@@ -124,7 +117,6 @@ for m in MONTHS:
     if rename_cols:
         bookings_merged[m] = df.rename(columns=rename_cols)
 
-# +
 # Merge guide skill data with guide information
 skills_named = {}
 
@@ -133,7 +125,6 @@ for m in MONTHS:
         guides[m], left_on="GuideID", right_on="id", how="left"
     )
 
-# +
 # --- INSIGHT 1.1: Top 10 most booked tours in March 2025 ---
 
 for m in ["03"]:
@@ -165,7 +156,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.4)  # reduce the value to create more space above
 plt.show()
 
-# +
 # --- INSIGHT 1.2: Top 10 Tours for April 2025 ---
 
 for m in ["04"]:
@@ -197,7 +187,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.4)
 plt.show()
 
-# +
 # --- INSIGHT 1.3: Top 10 Tours for May 2025 ---
 
 for m in ["05"]:
@@ -229,7 +218,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.4)
 plt.show()
 
-# +
 # --- INSIGHT 1.4: Top 10 Tours for June 2025 ---
 
 for m in ["06"]:
@@ -260,9 +248,6 @@ plt.xticks(rotation=45, ha="right", rotation_mode="anchor")
 plt.tight_layout()
 plt.subplots_adjust(top=1.4)
 plt.show()
-
-
-# +
 
 # --- INSIGHT 2.1: Peak Booking Dates in March 2025 ---
 
@@ -303,7 +288,6 @@ ax.set_ylim(0, current_ylim[1] + 1)
 
 plt.show()
 
-# +
 # --- INSIGHT 2.2: Peak Booking Dates in April 2025 ---
 
 for m in ["04"]:  # Loop through selected months
@@ -344,7 +328,6 @@ ax.set_ylim(0, current_ylim[1] + 1)
 
 plt.show()
 
-# +
 # --- INSIGHT 2.3: Peak Booking Dates in May 2025 ---
 
 for m in ["05"]:  # Loop through selected months
@@ -384,7 +367,6 @@ ax.set_ylim(0, current_ylim[1] + 1)
 
 plt.show()
 
-# +
 # --- INSIGHT 2.4: Peak Booking Dates in June 2025 ---
 
 for m in ["06"]:  # Loop through selected months
@@ -424,7 +406,6 @@ ax.set_ylim(0, current_ylim[1] + 1)
 
 plt.show()
 
-# +
 # --- INSIGHT 2.5: Compare daily bookings across March–June 2025 on a single plot ---
 
 # Set title for combined months (in Spanish)
@@ -472,7 +453,6 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-# +
 # --- INSIGHT 3.1: Most Active Guides by Name for March 2025 ---
 
 # Extract the 10 most active guides (by number of tours led)
@@ -500,7 +480,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)  # Adjust vertical spacing
 plt.show()
 
-# +
 # --- INSIGHT 3.2: Most Active Guides by Name for April 2025 ---
 
 # Extract the 10 most active guides (by number of tours led)
@@ -528,7 +507,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)  # Adjust vertical spacing
 plt.show()
 
-# +
 # --- INSIGHT 3.3: Most Active Guides by Name for May 2025 ---
 
 # Extract the 10 most active guides (by number of tours led)
@@ -556,7 +534,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)  # Adjust vertical spacing
 plt.show()
 
-# +
 # --- INSIGHT 3.4: Most Active Guides by Name for June 2025 ---
 
 # Extract the 10 most active guides (by number of tours led)
@@ -584,7 +561,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)  # Adjust vertical spacing
 plt.show()
 
-# +
 # --- INSIGHT 4.0: Guides with the most availability days ---
 # An "availability day" is defined as any day where a guide has at least one available time slot.
 # The goal is to find which guides are available the most across each month.
@@ -597,7 +573,6 @@ for m in MONTHS:
         availability[m], left_on="id", right_on="GuideID", how="left"
     )
 
-# +
 # --- INSIGHT 4.1: Guides with the most availability days for March 2025 ---
 # An availability day is any day a guide has at least one available time slot.
 
@@ -640,7 +615,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 4.2: Guides with the most availability days for April 2025 ---
 # An availability day is any day a guide has at least one available time slot.
 
@@ -683,7 +657,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 4.3: Guides with the most availability days for May 2025 ---
 # An availability day is any day a guide has at least one available time slot.
 
@@ -726,7 +699,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 4.4: Guides with the most availability days for June 2025 ---
 # An availability day is any day a guide has at least one available time slot.
 
@@ -769,7 +741,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 5.1: Count how many days each guide was available (March 2025) ---
 # This plots the number of distinct availability days per guide, not limited to top 10.
 
@@ -802,7 +773,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 5.2: Count how many days each guide was available (April 2025) ---
 # This plots the number of distinct availability days per guide, not limited to top 10.
 
@@ -835,7 +805,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 5.3: Count how many days each guide was available (May 2025) ---
 # This plots the number of distinct availability days per guide, not limited to top 10.
 
@@ -868,8 +837,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-
-# +
 # --- INSIGHT 5.4: Count how many days each guide was available (June 2025) ---
 # This plots the number of distinct availability days per guide, not limited to top 10.
 
@@ -902,7 +869,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 5.5: Plot guide availability days in March, April, May, and June 2025 on the same axes ---
 
 # Set reference label for the chart
@@ -1006,8 +972,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.4)
 plt.show()
 
-
-# +
 # --- INSIGHT 6.1: Count how many days each guide was not available for March 2025 ---
 
 # Count how many days are in March in Year 2025
@@ -1041,7 +1005,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 6.2: Count how many days each guide was not available for April 2025 ---
 
 # Count how many days are in April in Year 2025
@@ -1075,7 +1038,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 6.3: Count how many days each guide was not available for May 2025 ---
 
 # Count how many days are in May in Year 2025
@@ -1109,7 +1071,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 6.4: Count how many days each guide was not available for June 2025 ---
 
 # Count how many days are in June in Year 2025
@@ -1143,7 +1104,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 7.1: Count how many days guides were occupied for March 2025 ---
 
 # Use the merged bookings data for March (already includes GuideName)
@@ -1189,7 +1149,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.4)
 plt.show()
 
-# +
 # --- INSIGHT 7.2: Count how many days guides were occupied for April 2025 ---
 
 # Using the merged bookings data for April (already includes GuideName)
@@ -1241,7 +1200,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.4)
 plt.show()
 
-# +
 # --- INSIGHT 7.3: Count how many days guides were occupied for May 2025 ---
 
 # Using the merged bookings data for May (already includes GuideName)
@@ -1288,7 +1246,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.4)
 plt.show()
 
-# +
 # --- INSIGHT 7.4: Count how many days guides were occupied for June 2025 ---
 
 
@@ -1334,8 +1291,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.4)
 plt.show()
 
-
-# +
 # --- INSIGHT 8.1: Calculate Occupancy Rate for March 2025 ---
 # Occupancy Rate = (DaysOccupied / AvailableDays) * 100
 
@@ -1394,7 +1349,6 @@ plt.suptitle(f'% Ocupación de los Guías - {MONTHS["03"]}', y=0.95, fontsize=12
 plt.tight_layout()
 plt.show()
 
-# +
 # --- INSIGHT 8.2: Calculate Occupancy Rate for April 2025 ---
 # Occupancy Rate = (DaysOccupied / AvailableDays) * 100
 
@@ -1454,7 +1408,6 @@ plt.suptitle(f'% Ocupación de los Guías - {MONTHS["04"]}', y=0.95, fontsize=12
 plt.tight_layout()
 plt.show()
 
-# +
 # --- INSIGHT 8.3: Calculate Occupancy Rate for May 2025 ---
 # Occupancy Rate = (DaysOccupied / AvailableDays) * 100
 
@@ -1516,7 +1469,6 @@ plt.suptitle(
 plt.tight_layout()
 plt.show()
 
-# +
 # --- INSIGHT 8.4: Calculate Occupancy Rate for June 2025 ---
 # Occupancy Rate = (DaysOccupied / AvailableDays) * 100
 
@@ -1608,7 +1560,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # INSIGHT 9.2: Guides certified for the most tours for April 2025
 
 # Count how many tours each guide is certified for
@@ -1638,7 +1589,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # INSIGHT 9.3: Guides Certified for the Most Tours – May 2025
 
 # Count how many tours each guide is certified for
@@ -1668,7 +1618,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # INSIGHT 9.4: Guides Certified for the Most Tours – June 2025
 
 # Count how many tours each guide is certified for
@@ -1698,7 +1647,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # INSIGHT 10.1: Total Operating Days by Location – March 2025
 
 # Extract March tours from the dictionary
@@ -1748,7 +1696,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # INSIGHT 10.2: Total Operating Days by Location – April 2025
 
 # Extract April tours from the dictionary
@@ -1799,7 +1746,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # INSIGHT 10.3: Total Operating Days by Location – May 2025
 
 # Extract May tours from the dictionary
@@ -1850,7 +1796,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # INSIGHT 10.4: Total Operating Days by Location – June 2025
 
 # Extract June tours from the dictionary
@@ -1901,7 +1846,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # INSIGHT 10.5: Compare Operating Days by Location – March to June 2025
 
 # Step 1: Convert Series to DataFrames and reset index
@@ -2044,7 +1988,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # INSIGHT 11.1: Most Common Time Slot per Location – March 2025
 
 # Construct TimeSlot string
@@ -2114,7 +2057,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # INSIGHT 11.2: Most Common Time Slot per Location – April 2025
 
 # Construct TimeSlot string
@@ -2184,7 +2126,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 11.3: Most Common Time Slot per Location – May 2025 ---
 
 # Construct TimeSlot string
@@ -2252,7 +2193,6 @@ plt.tight_layout()
 plt.subplots_adjust(top=1.2)
 plt.show()
 
-# +
 # --- INSIGHT 11.4: Most Common Time Slot per Location – June 2025 ---
 
 # Construct TimeSlot string
