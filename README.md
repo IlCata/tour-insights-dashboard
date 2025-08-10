@@ -1,6 +1,6 @@
 # Guided Tour Insights Dashboard Generator
 
-> **Status**: 🟡 Beta — Functional and complete for portfolio purposes, but improvements are planned.
+> **Status**: 🟡 Beta — Functional and complete, but improvements are planned.
 
 ## Project Goal
 The aim of this project is to build a Python-based tool, running in a Jupyter Notebook, that automatically generates dashboards from tour booking datasets.  
